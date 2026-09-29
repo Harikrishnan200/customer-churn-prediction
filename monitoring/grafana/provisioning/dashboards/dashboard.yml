@@ -1,0 +1,10 @@
+# Tells Grafana to auto-load any dashboard JSON files placed in this
+# folder, so the ChurnOps dashboard appears without manual import.
+apiVersion: 1
+
+providers:
+  - name: ChurnOps
+    folder: ChurnOps
+    type: file
+    options:
+      path: /etc/grafana/provisioning/dashboards

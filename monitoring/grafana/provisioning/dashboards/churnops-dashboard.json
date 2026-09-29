@@ -1,0 +1,59 @@
+{
+  "title": "ChurnOps API",
+  "uid": "churnops-api",
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "10s",
+  "time": { "from": "now-30m", "to": "now" },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Total Prediction Requests",
+      "type": "stat",
+      "gridPos": { "h": 6, "w": 6, "x": 0, "y": 0 },
+      "targets": [
+        { "expr": "prediction_requests_total", "legendFormat": "requests" }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Prediction Rate (req/s)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 6, "y": 0 },
+      "targets": [
+        { "expr": "rate(prediction_requests_total[1m])", "legendFormat": "requests/sec" }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Total Prediction Errors",
+      "type": "stat",
+      "gridPos": { "h": 6, "w": 6, "x": 18, "y": 0 },
+      "targets": [
+        { "expr": "prediction_errors_total", "legendFormat": "errors" }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Prediction Latency (p95, seconds)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(prediction_latency_seconds_bucket[5m])) by (le))",
+          "legendFormat": "p95 latency"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Churn Predictions by Outcome",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "targets": [
+        { "expr": "churn_predictions_total", "legendFormat": "{{outcome}}" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+# Prometheus scrape configuration.
+#
+# WHAT: Tells Prometheus which targets to poll for metrics and how often.
+# WHY:  Prometheus doesn't receive metrics pushed to it - it "scrapes"
+#       (pulls) them from a /metrics endpoint on a schedule. This file
+#       is that schedule + target list.
+# WHERE: Mounted into the Prometheus container by docker-compose.yml.
+
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "churnops-api"
+    static_configs:
+      # "api" is the FastAPI service's hostname on the Docker Compose
+      # network (see docker-compose.yml) - not localhost, since
+      # Prometheus is running in its own container.
+      - targets: ["api:8000"]

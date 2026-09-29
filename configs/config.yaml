@@ -1,0 +1,26 @@
+# ChurnOps configuration
+# Every tunable value in the project lives here so there is a single
+# source of truth. Code should read these values instead of hardcoding them.
+
+data:
+  raw_path: data/raw/churn.csv
+  processed_dir: data/processed/
+  target_column: Churn
+
+training:
+  test_size: 0.2
+  val_size: 0.1
+  random_state: 42
+  model_type: logistic_regression # or: random_forest
+
+mlflow:
+  # Port 5001, not 5000: on macOS, port 5000 is often occupied by the
+  # AirPlay Receiver service.
+  tracking_uri: http://localhost:5001
+  experiment_name: churnops
+  model_name: churn-model
+
+monitoring:
+  reference_data: data/processed/reference.csv
+  current_data: data/processed/test.csv
+  report_path: reports/drift_report.html

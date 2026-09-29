@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Env
+.env
+
+# Data & models (versioned via DVC / MLflow, not git)
+data/raw/*.csv
+data/processed/*.csv
+models/*
+!models/.gitkeep
+reports/*
+!reports/.gitkeep
+
+# MLflow local tracking store
+mlruns/
+mlartifacts/
+mlflow.db
+
+# Testing / tooling
+.pytest_cache/
+.ruff_cache/
+.coverage
+
+# OS
+.DS_Store

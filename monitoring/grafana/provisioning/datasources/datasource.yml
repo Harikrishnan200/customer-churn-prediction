@@ -1,0 +1,10 @@
+# Auto-provisions Prometheus as a Grafana datasource on container startup,
+# so nobody has to click through "Add datasource" manually.
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true

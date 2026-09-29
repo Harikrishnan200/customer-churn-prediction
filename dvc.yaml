@@ -1,0 +1,18 @@
+# DVC is used here purely for DATASET VERSIONING (see data/raw/churn.csv.dvc),
+# not for a multi-stage orchestrated pipeline - that would be the kind of
+# "complex orchestration system" this project intentionally avoids.
+#
+# This single stage is included so `dvc repro` has something simple to
+# run: it regenerates the processed train/val/test/reference CSVs from
+# the raw, DVC-tracked dataset whenever the raw data changes.
+stages:
+  prepare_data:
+    cmd: python -m src.data
+    deps:
+      - src/data.py
+      - data/raw/churn.csv
+    outs:
+      - data/processed/train.csv
+      - data/processed/val.csv
+      - data/processed/test.csv
+      - data/processed/reference.csv
