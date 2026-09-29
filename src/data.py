@@ -51,7 +51,7 @@ def load_config(config_path: str = "configs/config.yaml") -> dict:
 def load_data(raw_path: str) -> pd.DataFrame:
     """Read the raw CSV from disk exactly as downloaded, no changes."""
     logger.info("Loading raw data from %s", raw_path)
-    return pd.read_csv(raw_path)
+    return pd.read_csv(raw_path)        # csv to pd dataframes
 
 
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
