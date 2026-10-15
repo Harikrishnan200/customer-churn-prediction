@@ -1,4 +1,4 @@
-# ChurnOps — Production ML & MLOps Pipeline
+# Churn Prediction System — Production ML & MLOps Pipeline
 
 A beginner-friendly, production-**style** MLOps project. It predicts
 whether a telecom customer will churn — but the real point of this
